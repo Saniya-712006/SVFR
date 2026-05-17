@@ -278,7 +278,7 @@ If you use this project in your research, please cite:
 
 Developed by:
 
-**Shaikh Saniya Ali**
+**Shaikh Saniya Ali ,**
 **Vishal P**
 
 GitHub:  
