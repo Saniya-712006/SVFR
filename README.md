@@ -136,8 +136,8 @@ Expected dataset layout:
 
 ```text
 data/
-└── cgbench/
-    ├── filtered_cgbench_rekv_stream_relative.json
+└── your_dataset/
+    ├── your_dataset_annotations_file.json
     └── videos/
         ├── video1.mp4
         ├── video2.mp4
@@ -167,9 +167,9 @@ The framework supports:
 python run_evaluation.py \
     --task mcq \
     --model_alias "llava_onevision_0.5b" \
-    --anno_path "data/cgbench/filtered_cgbench_rekv_stream_relative.json" \
-    --video_dir_path "data/cgbench/videos/" \
-    --save_dir "results/cgbench_mcq_run" \
+    --anno_path "your_dataset/your_dataset_annotations_file.json" \
+    --video_dir_path "data/your_dataset/videos/" \
+    --save_dir "results/your_dataset_mcq_run" \
     --sample_fps 1.0 \
     --block_size 32 \
     --retrieve_per_chunk 4 \
@@ -184,9 +184,9 @@ python run_evaluation.py \
 python run_evaluation.py \
     --task open-ended \
     --model_alias "llava_onevision_0.5b" \
-    --anno_path "data/cgbench/filtered_cgbench_rekv_stream_relative.json" \
-    --video_dir_path "data/cgbench/videos/" \
-    --save_dir "results/cgbench_open_ended_run" \
+    --anno_path "your_dataset/your_dataset_annotations_file.json" \
+    --video_dir_path "data/your_dataset/videos/" \
+    --save_dir "results/your_dataset_open_ended_run" \
     --sample_fps 1.0 \
     --block_size 16 \
     --retrieve_per_chunk 4 \
@@ -208,36 +208,6 @@ python run_evaluation.py \
 ---
 
 # 🔧 Technical Optimizations Implemented
-
-## ✅ Precision Mismatch Fix
-
-Resolved runtime dtype conflicts:
-
-```text
-RuntimeError: mat1 and mat2 must have the same dtype
-```
-
-by ensuring consistent precision casting (`torch.float16`) across visual feature projections.
-
----
-
-## ✅ Length Bias Correction
-
-Replaced cumulative log-probability scoring:
-
-```python
-.sum()
-```
-
-with normalized token-length scoring:
-
-```python
-.mean()
-```
-
-This prevents systematic preference toward shorter answer choices during MCQ evaluation.
-
----
 
 ## ✅ VRAM Optimization
 
@@ -297,7 +267,7 @@ If you use this project in your research, please cite:
 ```bibtex
 @misc{svfr2026,
   title={Sequential Visual Feature Refinement for Memory-Efficient Video Question Answering},
-  author={Saniya Ali and Contributors},
+  author={Shaikh Saniya Ali and Contributors},
   year={2026}
 }
 ```
